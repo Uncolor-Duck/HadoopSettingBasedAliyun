@@ -28,8 +28,8 @@ echo "开始修改datanode"
 for (( i=1;i<=$data_nums;i++ ))
 do
 	contents=$(awk "NR==$((i+${lens}))" ~/source/config)
-	if [ $(grep $contents /etc/hosts | wc -l) -gt 0 ]; then
-		echo "$contents has been set in hosts"
+	if [ $(grep datanode$i /etc/hosts | wc -l) -gt 0 ]; then
+		echo "datanode$i has been set in hosts"
 		continue
 	fi
 	echo -e "$contents\tdatanode$i" >> ${hosts_dir}
