@@ -27,7 +27,7 @@ if [ ! -d "/var/hadoop" ]; then
 	mkdir -p /var/hadoop
 fi
 
-if ! tail "${root_dir}/core-site.xml" | grep -q "fs.defauseFS"; then
+if ! tail "${root_dir}/core-site.xml" | grep -q "hadoop.tmp.dir"; then
 	### 这里还需要查询当前节点的名字
 	readarray -t all_nodes < <(grep -v "^$" /etc/hosts)
 	for(( i=0;i<${#all_nodes[@]}-1;i++ ))
