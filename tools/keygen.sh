@@ -11,7 +11,7 @@ echo "正在生成密钥"
 ssh-keygen
 
 # 将生成的密钥传输给自己
-ssh-copy-id locahost
+ssh-copy-id localhost
 
 # 先同步给namenode
 ssh-copy-id namenode

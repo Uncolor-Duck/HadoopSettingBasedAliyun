@@ -47,9 +47,10 @@ if ! tail "${root_dir}/core-site.xml" | grep -q "hadoop.tmp.dir"; then
         	done
 	done
 
-
-
-	echo "<configuration>
+	### 需要找到config文件的位置，否则会出现两个config
+	#### 寻找</configuration>位置
+	config_lens=$(grep -n "</configuration>" "${root_dir}/core-site.xml" | cut -d: -f1)
+	sed -a "${config_lens}<configuration>
     <property>
         <name>fs.defaultFS</name>
         <value>hdfs://namenode:9000</value>
@@ -58,13 +59,14 @@ if ! tail "${root_dir}/core-site.xml" | grep -q "hadoop.tmp.dir"; then
         <name>hadoop.tmp.dir</name>
         <value>/var/hadoop</value>
     </property>
-</configuration>" >> "${root_dir}/core-site.xml"
+</configuration>" "${root_dir}/core-site.xml"
 	echo "set core-site success"
 fi
 
 
 if ! tail ${root_dir}/hdfs-site.xml | grep -q "dfs.client.use.datanode.hostname"; then
-	echo "<configuration>
+	config_lens=$(grep -n "</configuration>" "${root_dir}/hdfs-site.xml" | cut -d: -f1)
+	sed -a "${config_lens}<configuration>
 <property>
         <name>dfs.namenode.http-address</name>
         <value>namenode:50070</value>
@@ -82,7 +84,7 @@ if ! tail ${root_dir}/hdfs-site.xml | grep -q "dfs.client.use.datanode.hostname"
  <value>true</value>
  <description>only cofig in clients</description>
 </property>
-</configuration>" >> "${root_dir}/hdfs-site.xml"
+</configuration>" "${root_dir}/hdfs-site.xml"
 	echo "已经配置hdfs-site"
 fi
 
