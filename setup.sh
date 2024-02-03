@@ -17,5 +17,11 @@ bash ./tools/keygen.sh
 # JAVA与Hadoop环境变量的配置
 bash ./tools/path_env.sh
 
-# Hadoop安装
+# Hadoop安装,各项config的配置
 bash ./tools/HadoopDownLoad.sh
+
+# Yarn配置文件修改
+bash ./tools/modify_yarn.sh
+
+# Hadoop-envs.sh配置
+bash ./tools/modify_hadoop.sh
