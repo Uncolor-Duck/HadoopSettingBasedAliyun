@@ -11,7 +11,7 @@ if ! grep -q "JAVA_HOME=" "/etc/profile"; then
 	echo "export CLASSPATH=.:\$JAVA_HOME/lib/dt.jar:\$JAVA_HOME/lib/tools.jar" >> "/etc/profile"
 fi
 ## 获取Hadoop地址，默认安装在./hadoop
-hadoop_dir="./hadoop"
+hadoop_dir="/root/Hadoop/hadoop"
 if ! grep -q "HADOOP_HOME=" "/etc/profile"; then
 	echo "export HADOOP_HOME=${hadoop_dir}" >> "/etc/profile"
 	echo "export PATH=\$HADOOP_HOME/bin:\$HADOOP_HOME/sbin:\$PATH"
