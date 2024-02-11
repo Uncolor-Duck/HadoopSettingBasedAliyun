@@ -70,6 +70,7 @@ if ! tail ${root_dir}/hdfs-site.xml | grep -q "dfs.client.use.datanode.hostname"
 	sed -i "${config_lens}i\
 		<property>\
 			<name>dfs.namenode.http-address</name>\
+			<value>namenode:50070</value>\
 		</property>\
 		<property>\
 			<name>dfs.namenode.secondary.http-address</name>\
